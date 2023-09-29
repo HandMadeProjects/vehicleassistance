@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- <link href="{% static 'tze\CSS\daisyui.css' %}" rel="stylesheet" type="text/css" /> -->
+
+    <script type="text/javascript" src="{% static 'jsscript\tailwindcss.js' %}"></script>
+    <!-- <script type="text/javascript" src="{% static 'jsscript\script.js' %}"></script> -->
+
+    <title>Assistance Login</title>
+</head>
+<body>
+    <h2 class="text-4xl text-center m-24 font-bold">Assistance Login</h2>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li class="text-center p-2 border ">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+    <div class="p-4 mx-24">
+        <div class="grid grid-cols-3 gap-4">
+            <div></div>
+            
+            <div class="border rounded p-4  shadow-xl">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="my-4">
+                        <label for="assname" class="text-xl font-bold">Assistant:</label>
+                        <input type="text" name="assname" required class="p-1 border mx-4 rounded px-2"><br>
+                    </div>
+                    
+                    <div class="my-4">
+                        <label for="asspassword" class="text-xl font-bold">Password:</label>
+                        <input type="password" name="asspassword" required class="p-1 border mx-4 rounded px-2"><br>
+                    </div>
+                    <div class="flex justify-center">
+                        <button type="submit" class="text-xl p-1 border mx-4 rounded px-2 hover:bg-gray-300 mr-6">Login</button>
+                        <a href="/assregister/" class="text-xl p-1 border mx-4 rounded px-2 hover:bg-gray-300">Sign UP</a>
+                        <a href="/" class="text-xl p-1 border mx-4 rounded px-2 hover:bg-gray-300">Home</a>
+                    </div>
+                </form>
+            </div>
+            <div></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{% extends 'assistant/assbase.html' %} {% block title %}Prakriti Community | User Profile{% endblock %}
+<div>{% block content %} {% load static %}</div>
+
+
+<div class="mx-4 pt-24">
+
+  <header>
+    <h2 class="text-gray-400 text-2xl font-semibold m-6 text-center">User Profile</h2>
+  </header>
+
+  <!-- class assistant(models.Model):
+    # user = models.OneToOneField(User, on_delete=models.CASCADE)
+    Ass_id = models.AutoField(primary_key=True)
+    assname = models.CharField(max_length=100, default="")
+    assfullname = models.CharField(max_length=100, default="")
+    assemail = models.EmailField()
+    assage = models.IntegerField()
+    assdate_of_birth = models.DateField()
+    homelocationlat = models.CharField(max_length=100, default="")
+    homelocationlong = models.CharField(max_length=100, default="")
+    assstate = models.CharField(max_length=100, default="")
+
+    contact_number = models.CharField(max_length=15, default="")
+    registerdOn = models.CharField(max_length=100, default="")
+    ratings = models.IntegerField(default=0) -->
+
+
+    <div class=" mx-10">
+      <a href="{% url 'user_logout' %}" class="p-2 border shadow">Logout</a>
+      <p class="text-xl my-6">User Id: {{ user_profile.Ass_id }}</p>
+      <p class="text-xl my-6">Username: {{ user_profile.assname }}</p>
+      <p class="text-xl my-6">Fullname: {{ user_profile.assfullname }}</p>
+      <p class="text-xl my-6">Ratings: {{ user_profile.ratings }}</p>
+      <p class="text-xl my-6">Registerd on: {{ user_profile.registerdOn }}</p>
+      <p class="text-xl my-6">Email: {{ user_profile.assemail }}</p>
+      <p class="text-xl my-6">Age: {{ user_profile.assage }}</p>
+      <p class="text-xl my-6">Date of Birth: {{ user_profile.assdate_of_birth }}</p>
+      <p class="text-xl my-6">Location (Latitude): {{ user_profile.homelocationlat }}</p>
+      <p class="text-xl my-6">Location (Longitude): {{ user_profile.homelocationlong }}</p>
+      <p class="text-xl my-6">State: {{ user_profile.assstate }}</p>
+      <p class="text-xl my-6">Contact Number: {{ user_profile.contact_number }}</p>
+    </div>
+
+</div>
+
+<!-- <a href="" target="_blank"></a> -->
+{% endblock %}
+

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <!-- <link href="{% static 'tze\CSS\daisyui.css' %}" rel="stylesheet" type="text/css" /> -->
+
+    <script type="text/javascript" src="{% static 'jsscript\tailwindcss.js' %}"></script>
+    <!-- <script type="text/javascript" src="{% static 'jsscript\script.js' %}"></script> -->
+
+    <title>Assistance Register</title>
+</head>
+<body class="m-20">
+<div>
+
+    <div class="grid grid-cols-2 gap-4">
+        <div class="col-span-2 border border-2 border-gray-400 shadow-lg mt-10 rounded px-20 py-10 m-20">
+            <!-- {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %} -->
+            <h2 class="text-xl text-black text-center mb-6">Assistance Registration</h2>
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="assname"
+                    >Assistant Name</label
+                    >
+                    <input
+                    class="border-b-2 border border-indigo-500 rounded-md py-2 px-4 w-full shadow-lg"
+                    type="text"
+                    id="assname"
+                    name="assname"
+                    placeholder="enter your assname"
+                    required
+                    />
+                </div>
+
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="assfullname"
+                    >Full Name</label
+                    >
+                    <input
+                    class="border-b-2 border border-indigo-500 rounded-md py-2 px-4 w-full shadow-lg"
+                    type="text"
+                    id="assfullname"
+                    name="assfullname"
+                    placeholder="enter your full name"
+                    required
+                    />
+                </div>
+
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="assemail"
+                    >Email</label
+                    >
+                    <input
+                    class="border-b-2 border border-indigo-500 rounded-md py-2 px-4 w-full shadow-lg"
+                    type="eassemailmail"
+                    id="assemail"
+                    name="assemail"
+                    placeholder="enter your email"
+                    required
+                    />
+                </div>
+
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="assage"
+                    >Age</label
+                    >
+                    <input
+                    class="border-b-2 border border-indigo-500 rounded-md py-2 px-4 w-full shadow-lg"
+                    type="text"
+                    id="assage"
+                    name="assage"
+                    placeholder="enter your age"
+                    required
+                    />
+                </div>
+
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="assdate_of_birth"
+                    >Date of Birth</label
+                    >
+                    <input
+                    class="border-b-2 border border-indigo-500 rounded-md py-2 px-4 w-full shadow-lg"
+                    type="date"
+                    id="assdate_of_birth"
+                    name="assdate_of_birth"
+                    placeholder="enter your birth date : day/month/year"
+                    required
+                    />
+                </div>
+
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="homelocationlat"
+                    >Location (Latitude) </label
+                    >
+                    <input
+                    class="border-b-2 border border-indigo-500 rounded-md py-2 px-4 w-full shadow-lg"
+                    type="text"
+                    id="homelocationlat"
+                    name="homelocationlat"
+                    placeholder="enter your location (latitude)"
+                    required
+                    />
+                </div>
+
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="homelocationlong"
+                    >Location (Longitude) </label
+                    >
+                    <input
+                    class="border-b-2 border border-indigo-500 rounded-md py-2 px-4 w-full shadow-lg"
+                    type="text"
+                    id="homelocationlong"
+                    name="homelocationlong"
+                    placeholder="enter your location (longitude)"
+                    required
+                    />
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="assstate">State</label>
+                    <select class="border-b-2 border border-green-600 rounded-md py-2 px-4 w-full shadow-lg" id="assstate" name="assstate" required>
+                        <option value="" disabled selected>Select your state</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Goa">Goa</option>
+                        <option value="Gujarat">Gujarat</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="Chhattisgarh">Chhattisgarh</option>
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option value="Haryana">Haryana</option>
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="phone"
+                    >Phone Number</label
+                    >
+                    <input
+                    class="border-b-2 border border-indigo-500 rounded-md py-2 px-4 w-full shadow-lg"
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="enter your phone"
+                    required
+                    />
+                </div>
+
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="asspassword"
+                    >Password</label
+                    >
+                    <input
+                    class="border-b-2 border border-indigo-500 rounded-md py-2 px-4 w-full shadow-lg"
+                    type="password"
+                    id="asspassword"
+                    name="asspassword"
+                    placeholder="enter your password"
+                    required
+                    />
+                </div>
+
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="confirm_password"
+                    >Confirm Password</label
+                    >
+                    <input
+                    class="border-b-2 border border-indigo-500 rounded-md py-2 px-4 w-full shadow-lg"
+                    type="password"
+                    id="confirm_password"
+                    name="confirm_password"
+                    placeholder="enter your password again"
+                    required
+                    />
+                </div>
+
+                <input type="submit" class="border border-gray-300 rounded p-4 shadow-lg font-bold hover:text-blue-700">
+                <a href="{% url 'user_login' %}" class="mx-6 p-4 hover:underline font-bold hover:text-blue-700">Login</a>
+                <a href="/" class="mx-6 p-4 hover:underline font-bold hover:text-blue-700">back</a>
+            </form>
+        </div>
+
+</div>
+</body>
+</html>

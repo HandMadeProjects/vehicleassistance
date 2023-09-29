@@ -1,0 +1,25 @@
+python manage.py makemigrations
+python manage.py migrate
+
+
+python manage.py createsuperuser
+username: adminvaapp
+password: myAdminPass@123
+
+
+
+
+
+
+
+
+
+
+
+---- to run project 
+python manage.py runserver
+
+
+
+
+

@@ -1,0 +1,39 @@
+{% extends 'assistant/assbase.html' %} {% block title %}Prakriti Community | User Profile{% endblock %}
+<div>{% block content %} {% load static %}</div>
+
+
+<div class="mx-4 pt-24">
+
+  <header>
+    <h2 class="text-gray-400 text-2xl font-semibold m-6 text-center">Chat Room for {{ chat_details.0.Booking_id }}</h2>
+  </header>
+<!-- 
+  Booking_id = models.IntegerField(default=0)
+  message = models.CharField(max_length=1000, default="")
+  username = models.CharField(max_length=100, default="")
+  bookdate = models.CharField(max_length=15, default="")
+  booktime = models.CharField(max_length=15, default="")
+ -->
+
+    <div class=" mx-10">
+        {% for chats in chat_details %}
+
+            {% if chats.username == user.username %}
+                <!-- assistant -->
+                <div class="text-right pr-4 p-1 border border-blue-700 my-2">{{ user.username }} Msg: {{ chats.message }}</div>
+
+            {% else %}
+                <!-- user  -->
+                <div class="text-left pl-4 p-1 border border-green-700 my-2">{{ chats.username }} msg: {{ chats.message }}</div>
+            {% endif %}
+
+        {% endfor %}
+        
+
+    </div>
+
+</div>
+
+<!-- <a href="" target="_blank"></a> -->
+{% endblock %}
+

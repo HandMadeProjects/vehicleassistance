@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <!-- <link href="{% static 'tze\CSS\daisyui.css' %}" rel="stylesheet" type="text/css" /> -->
+
+    <script type="text/javascript" src="{% static 'jsscript\tailwindcss.js' %}"></script>
+    <!-- <script type="text/javascript" src="{% static 'jsscript\script.js' %}"></script> -->
+
+    <title>User Registration</title>
+</head>
+<body class="m-20">
+<div>
+
+    <div class="grid grid-cols-2 gap-4">
+        <div class="col-span-2 border border-2 border-gray-400 shadow-lg mt-10 rounded px-20 py-10 m-20">
+            <!-- {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %} -->
+            <h2 class="text-xl text-black text-center mb-6">User Registration</h2>
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="username"
+                    >Username</label
+                    >
+                    <input
+                    class="border-b-2 border border-indigo-500 rounded-md py-2 px-4 w-full shadow-lg"
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="enter your username"
+                    required
+                    />
+                </div>
+
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="fullname"
+                    >Full Name</label
+                    >
+                    <input
+                    class="border-b-2 border border-indigo-500 rounded-md py-2 px-4 w-full shadow-lg"
+                    type="text"
+                    id="fullname"
+                    name="fullname"
+                    placeholder="enter your full name"
+                    required
+                    />
+                </div>
+
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="email"
+                    >Email</label
+                    >
+                    <input
+                    class="border-b-2 border border-indigo-500 rounded-md py-2 px-4 w-full shadow-lg"
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="enter your email"
+                    required
+                    />
+                </div>
+
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="age"
+                    >Age</label
+                    >
+                    <input
+                    class="border-b-2 border border-indigo-500 rounded-md py-2 px-4 w-full shadow-lg"
+                    type="text"
+                    id="age"
+                    name="age"
+                    placeholder="enter your age"
+                    required
+                    />
+                </div>
+
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="birthdate"
+                    >Date of Birth</label
+                    >
+                    <input
+                    class="border-b-2 border border-indigo-500 rounded-md py-2 px-4 w-full shadow-lg"
+                    type="date"
+                    id="birthdate"
+                    name="birthdate"
+                    placeholder="enter your birth date : day/month/year"
+                    required
+                    />
+                </div>
+
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="locationlat"
+                    >Location (Latitude) </label
+                    >
+                    <input
+                    class="border-b-2 border border-indigo-500 rounded-md py-2 px-4 w-full shadow-lg"
+                    type="text"
+                    id="locationlat"
+                    name="locationlat"
+                    placeholder="enter your location (latitude)"
+                    required
+                    />
+                </div>
+
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="locationlong"
+                    >Location (Longitude) </label
+                    >
+                    <input
+                    class="border-b-2 border border-indigo-500 rounded-md py-2 px-4 w-full shadow-lg"
+                    type="text"
+                    id="locationlong"
+                    name="locationlong"
+                    placeholder="enter your location (longitude)"
+                    required
+                    />
+                </div>
+
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="phone"
+                    >Phone Number</label
+                    >
+                    <input
+                    class="border-b-2 border border-indigo-500 rounded-md py-2 px-4 w-full shadow-lg"
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="enter your phone"
+                    required
+                    />
+                </div>
+
+                <!-- Student or Practitioner Field (Radio Buttons)
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Are you a:</label>
+                    
+                    <div class="ml-10">
+                        <input type="radio" id="student" name="user_type" value="student" required>
+                        <label for="student">Student</label>
+                        <input type="radio" id="practitioner" name="user_type" value="practitioner" required>
+                        <label for="practitioner">Practitioner</label>
+                    </div>
+                </div> -->
+
+                <!-- Image Upload Field -->
+                <!-- <div>
+                    <label for="image">Upload Image:</label>
+                    <input type="file" id="image" name="image" accept="image/*" required>
+                </div> -->
+
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="password"
+                    >Password</label
+                    >
+                    <input
+                    class="border-b-2 border border-indigo-500 rounded-md py-2 px-4 w-full shadow-lg"
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="enter your password"
+                    required
+                    />
+                </div>
+
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="confirm_password"
+                    >Confirm Password</label
+                    >
+                    <input
+                    class="border-b-2 border border-indigo-500 rounded-md py-2 px-4 w-full shadow-lg"
+                    type="password"
+                    id="confirm_password"
+                    name="confirm_password"
+                    placeholder="enter your password again"
+                    required
+                    />
+                </div>
+
+                <input type="submit" class="border border-gray-300 rounded p-4 shadow-lg font-bold hover:text-blue-700">
+                <a href="{% url 'user_login' %}" class="mx-6 p-4 hover:underline font-bold hover:text-blue-700">Login</a>
+                <a href="/" class="mx-6 p-4 hover:underline font-bold hover:text-blue-700">back</a>
+            </form>
+        </div>
+
+</div>
+</body>
+</html>

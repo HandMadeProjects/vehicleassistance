@@ -1,0 +1,111 @@
+{% extends 'user/base.html' %} {% block title %}Prakriti | Home{% endblock %}
+<div>{% block content %} {% load static %}</div>
+
+
+<div class="my-28">
+
+    <div class="grid grid-cols-2 gap-4">
+        <div class="col-span-2 border border-2 border-gray-400 shadow-lg mt-10 rounded px-20 py-10 m-20">
+            <h2 class="text-2xl mb-6 text-center font-bold text-gray-400">Book Now</h2>
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="username"
+                    >Username</label
+                    >
+                    {% if user.is_authenticated %}
+                        <input
+                        class="border-b-2 border border-green-600 rounded-md py-2 px-4 w-full shadow-lg"
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="enter your username"
+                        value="{{ user.username }}"
+                        required
+                        />
+                    {% else %}
+                        <input
+                        class="border-b-2 border border-green-600 rounded-md py-2 px-4 w-full shadow-lg"
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="enter your username"
+                        required
+                        />
+                    {% endif %}
+                </div>
+
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="locationlat"
+                    >Location (Latitude) </label
+                    >
+                    <input
+                    class="border-b-2 border border-green-600 rounded-md py-2 px-4 w-full shadow-lg"
+                    type="text"
+                    id="locationlat"
+                    name="locationlat"
+                    placeholder="enter your location (latitude)"
+                    required
+                    />
+                </div>
+
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="locationlong"
+                    >Location (Longitude) </label
+                    >
+                    <input
+                    class="border-b-2 border border-green-600 rounded-md py-2 px-4 w-full shadow-lg"
+                    type="text"
+                    id="locationlong"
+                    name="locationlong"
+                    placeholder="enter your location (longitude)"
+                    required
+                    />
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="state">State</label>
+                    <select class="border-b-2 border border-green-600 rounded-md py-2 px-4 w-full shadow-lg" id="state" name="state" required>
+                        <option value="" disabled selected>Select your state</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Goa">Goa</option>
+                        <option value="Gujarat">Gujarat</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="Chhattisgarh">Chhattisgarh</option>
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option value="Haryana">Haryana</option>
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="message"
+                    >Message</label>
+
+                    <textarea 
+                        class="border-b-2 border border-green-600 rounded-md py-2 px-4 w-full shadow-lg"
+                        id="message" 
+                        name="message" 
+                        rows="4" 
+                        cols="50"
+                        required
+                        ></textarea>
+                </div>
+
+                <input type="submit" class="border border-gray-300 rounded p-4 shadow-lg font-bold hover:text-blue-700">
+                <a href="/" class="mx-6 p-4 hover:underline font-bold hover:text-blue-700">back</a>
+            </form>
+        </div>
+
+</div>
+
+{% endblock %}
+

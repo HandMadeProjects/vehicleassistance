@@ -1,0 +1,40 @@
+{% extends 'user/base.html' %} {% block title %}Prakriti Community | User Profile{% endblock %}
+<div>{% block content %} {% load static %}</div>
+
+
+<div class="mx-4 pt-24">
+
+  <header>
+    <h2 class="text-gray-400 text-2xl font-semibold m-6 text-center">User Profile</h2>
+  </header>
+
+  <div class=" mx-10">
+    <a href="{% url 'user_logout' %}" class="p-2 border shadow">Logout</a>
+    <p class="text-xl my-6">User Id: {{ user_profile.U_id }}</p>
+    <p class="text-xl my-6">Username: {{ user_profile.username }}</p>
+    <p class="text-xl my-6">Fullname: {{ user_profile.fullname }}</p>
+    <p class="text-xl my-6">Role: {{ user_profile.user_type }}</p>
+    <p class="text-xl my-6">Registerd on: {{ user_profile.registerdOn }}</p>
+    <p class="text-xl my-6">Email: {{ user_profile.email }}</p>
+    <p class="text-xl my-6">Age: {{ user_profile.age }}</p>
+    <p class="text-xl my-6">Date of Birth: {{ user_profile.date_of_birth }}</p>
+    <p class="text-xl my-6">Location (Latitude): {{ user_profile.locationlat }}</p>
+    <p class="text-xl my-6">Location (Longitude): {{ user_profile.locationlong }}</p>
+    <p class="text-xl my-6">Contact Number: {{ user_profile.contact_number }}</p>
+  </div>
+
+  <!-- U_id = models.AutoField(primary_key=True)
+  username = models.CharField(max_length=100, default="")
+  fullname = models.CharField(max_length=100, default="")
+  email = models.EmailField()
+  age = models.IntegerField()
+  date_of_birth = models.DateField()
+  locationlat = models.CharField(max_length=100, default="")
+  locationlong = models.CharField(max_length=100, default="")
+  contact_number = models.CharField(max_length=15, default="")
+  registerdOn = models.CharField(max_length=100, default="") -->
+
+</div>
+
+{% endblock %}
+

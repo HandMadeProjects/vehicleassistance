@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <link rel="shortcut icon" href="http://kamleshyadav.com/html/pure-ayurveda/html/assets/images/fav.png" type="image/x-icon">
+    
+    {% load static %}
+    <!-- <link href="{% static 'tze\CSS\daisyui.css' %}" rel="stylesheet" type="text/css" /> -->
+
+    <script type="text/javascript" src="{% static 'jsscript\tailwindcss.js' %}"></script>
+    <!-- <script type="text/javascript" src="{% static 'jsscript\script.js' %}"></script> -->
+    <style> {% block css %} {% endblock %} </style>
+
+    <title>{% block title %}{% endblock %}</title>
+  
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="text-[#74afad] body-font border shadow-xl">
+      <div class="fixed bg-white shadow-xl container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+        <a href="/" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+          <!-- <img src="http://kamleshyadav.com/html/pure-ayurveda/html/assets/images/herbal.svg" alt="" height="50px" width="50px"> -->
+          <span class="font-extrabold ml-3 text-xl text-[#74afad]">VAssist</span>
+        </a>
+        <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+          <a href="/" class="font-extrabold mr-5 hover:text-green-900">Home</a>
+          <a href="/about" class="font-extrabold mr-5 hover:text-green-900">About</a>
+          <a href="/contact" class="font-extrabold mr-5 hover:text-green-900">Contact</a>
+          
+            <div>
+              {% if user.is_authenticated %}
+              <a href="/profile">
+                  <p class="font-extrabold inline-flex bg-gray-100 border-0 py-4 px-6 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"><i class="fa-regular fa-circle-user"></i>{{ user.username }}</p>
+                </a>
+                {% else %}
+                <p class="navBar_text font-bold text-gray-600"><a href="{% url 'user_login' %}"
+                    class="font-extrabold inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Login</a></p>
+                    {% endif %}
+            </div>
+        </nav>
+        
+      </div>
+    </header>
+
+
+<!-- main content -->
+{% block content %}{% endblock %}
+
+      
+
+  </div>
+  </main>
+  </div>
+
+  <!-- footer Start -->
+  <footer class="text-gray-600 body-font border border-t-4 shadow-xl">
+    <div class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
+      <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
+        <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+          <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg> -->
+          <span class="ml-3 font-extrabold ml-3 text-xl text-[#74afad]">VAssist</span>
+        </a>
+        <p class="mt-2 text-sm text-gray-500">Best Vehicle Breakdown Assistance Management System</p>
+      </div>
+      <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
+        <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+          <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3"><b>Address</b></h2>
+          <nav class="list-none mb-10">
+            <li>
+              <a class="text-gray-600 hover:text-gray-800">890,Sector 62, Gyan Sarovar, GAIL Noida(Delhi/NCR)</a>
+            </li>
+            <li class="my-2">
+              <a class="text-gray-600 hover:text-gray-800"><b>TELEPHONE:</b> +7896541236</a>
+            </li>
+            <li>
+              <a class="text-gray-600 hover:text-gray-800"><b>EMAIL:</b> info@gmail.com</a>
+            </li>
+
+          </nav>
+        </div>
+
+        <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+        </div>
+        
+        
+        
+        <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+          <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3"><b>SERVICES</b></h2>
+          <nav class="list-none mb-10">
+            <li>
+              <a href="/" class="text-gray-600 hover:font-bold hover:text-gray-800">Home</a>
+            </li>
+            <li>
+              <a href="/about" class="text-gray-600 hover:font-bold hover:text-gray-800">About us</a>
+            </li>
+            <li>
+              <a href="/contact" class="text-gray-600 hover:font-bold hover:text-gray-800">Contact Us</a>
+            </li>
+            <li>
+              <a href="/booknow" class="text-gray-600 hover:font-bold hover:text-gray-800">Book Assist</a>
+            </li>
+          </nav>
+        </div>
+
+        <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+          <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3"><b>SERVICES</b></h2>
+          <nav class="list-none mb-10">
+            <li>
+              <a href="/admin" class="text-gray-600 hover:font-bold hover:text-gray-800">Admin</a>
+            </li>
+            <li>
+              <a href="{% url 'user_login' %}" 
+                class="text-gray-600 hover:font-bold hover:text-gray-800">User Login</a>
+            </li>
+            <li>
+              <a href="/asslogin" class="text-gray-600 hover:font-bold hover:text-gray-800">Assistant Login</a>
+            </li>
+          </nav>
+        </div>
+
+      </div>
+    </div>
+    <div class="bg-gray-100">
+      <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+        <p class="text-gray-500 text-sm text-center sm:text-left">© 2023 VAssist —
+        </p>
+        <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
+          <a class="text-gray-500">
+            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+            </svg>
+          </a>
+          <a class="ml-3 text-gray-500">
+            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+            </svg>
+          </a>
+          <a class="ml-3 text-gray-500">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+            </svg>
+          </a>
+          <a class="ml-3 text-gray-500">
+            <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+              <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+              <circle cx="4" cy="4" r="2" stroke="none"></circle>
+            </svg>
+          </a>
+        </span>
+      </div>
+    </div>
+  </footer>
+  <!-- footer End -->
+
+
+  {% block js %}{% endblock %}
+
+</body>
+</html>

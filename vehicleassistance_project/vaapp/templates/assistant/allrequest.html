@@ -1,0 +1,52 @@
+{% extends 'assistant/assbase.html' %} {% block title %}Prakriti | Home{% endblock %}
+<div>{% block content %} {% load static %}</div>
+
+
+<div class="my-28">
+    <p class="text-2xl font-bold text-green-600 text-center my-4">Logged In Assistant: {{ request.user.username }}</p>
+
+    <table class="min-w-full bg-white border border-gray-200">
+        <thead>
+          <tr>
+            <th class="border border-gray-200" >BookingID</th>
+            <th class="border border-gray-200" >UserID</th>
+            <th class="border border-gray-200" >Username</th>
+            <th class="border border-gray-200" >Latitude</th>
+            <th class="border border-gray-200" >Longitude</th>
+            <th class="border border-gray-200" >State</th>
+            <th class="border border-gray-200" >Message</th>
+            <th class="border border-gray-200" >Book Date</th>
+            <th class="border border-gray-200" >Book Time</th>
+            <th class="border border-gray-200" >Status</th>
+            <th class="border border-gray-200" >Chat</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for request in request_details %}
+            <tr>
+              <td class="border border-gray-200 text-center">{{ request.Booking_id }}</td>
+              <td class="border border-gray-200 text-center">{{ request.U_id }}</td>
+              <td class="border border-gray-200 text-center">{{ request.username }}</td>
+              <td class="border border-gray-200 text-center">{{ request.locationlat }}</td>
+              <td class="border border-gray-200 text-center">{{ request.locationlong }}</td>
+              <td class="border border-gray-200 text-center">{{ request.state }}</td>
+              <td class="border border-gray-200 text-center">{{ request.message }}</td>
+              <td class="border border-gray-200 text-center">{{ request.bookdate }}</td>
+              <td class="border border-gray-200 text-center">{{ request.booktime }}</td>
+              <td class="border border-gray-200 text-center">{{ request.status }}</td>
+              <td class="border border-gray-200 text-center">
+                <a href="/chat/{{ request.Booking_id }}" class="hover:text-blue-700 hover:underline">Room</a>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="10">No requests found</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+</div>
+
+{% endblock %}
+
