@@ -1,11 +1,11 @@
-{% extends 'assistant/assbase.html' %} {% block title %}Prakriti | Home{% endblock %}
+{% extends 'assistant/assbase.html' %} {% block title %}VAssist | Ass Home{% endblock %}
 <div>{% block content %} {% load static %}</div>
 
 
 <div class="my-28">
-    <p class="text-2xl font-bold text-green-600 text-center my-4">Logged In Assistant: {{ request.user.username }}</p>
+    <p class="text-2xl font-bold text-green-600 text-center my-4 capitalize	">Active Request for Assistant: {{ request.user.username }}</p>
 
-    <table class="min-w-full bg-white border border-gray-200">
+    <table class="min-w-full bg-white border border-gray-200 hidden">
         <thead>
           <tr>
             <th class="border border-gray-200" >BookingID</th>
@@ -45,6 +45,64 @@
           {% endfor %}
         </tbody>
       </table>
+
+      <!-- Request data cards -->
+      <div class="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4 mx-10 my-4">
+        <!-- for loop start  -->
+        {% for request in request_details %}
+
+          <div class="p-4 border rounded shadow-xl">
+            
+            <div class="grid grid-cols-3 gap-4 mb-4">
+              <div><i class="fa-solid fa-hashtag mr-2"></i>BookingID : {{ request.Booking_id }}</div>
+
+              <div class="text-red-600 text-center uppercase"><i class="fa-solid fa-ticket mr-2"></i> <b>{{ request.status }}</b> </div>
+
+              <div class="text-right">UserID : {{ request.U_id }}</div>
+            </div>
+
+            <div class="font-bold"><i class="fa-solid fa-id-badge mr-2"></i>{{ request.username }}</div>
+            
+            <div class="grid grid-cols-2 gap-4 my-4">
+              <div class="text-center">Latitude : {{ request.locationlat }}</div>
+              <div class="text-center">Longitude : {{ request.locationlong }}</div>
+            </div>
+            
+            <div class="font-bold uppercase">State : {{ request.state }}</div>
+
+            <div class="p-2 border border-orange-400 my-2"><b>Issue : </b>{{ request.message }}</div>
+
+            
+            <div class="grid grid-cols-2 gap-4 my-2">
+              <div></div>
+              <div class="flex justify-end">
+                <a href="/chat/{{ request.Booking_id }}" class="text-blue-500 font-bold hover:text-blue-700 text-right border border-white hover:border-blue-600 p-2 rounded hover:shadow-xl"><i class="fa-regular fa-message mr-2"></i>Chat</a>
+              </div>
+                
+            </div>
+
+
+
+            <!-- Form for Decline -->
+            <form method="post"  action="/assrequestaction/" class="my-4">
+              {% csrf_token %}
+              <div class="flex justify-start">
+
+                <input type="text" id="booking_id" name="booking_id" value="{{ request_details.0.Booking_id }}" class="hidden">
+                
+                <input type="text" id="username" name="username" value="{{ user.username }}" class="hidden">
+
+                  <button type="submit" name="action" value="decline" class="text-red-600 font-bold p-2 border border-2 mr-10 border-red-600 rounded-lg shadow-xl">Decline</button>
+                  <button type="submit" name="action" value="done"    class="text-green-600 font-bold p-2 border border-2 mr-10 border-green-600 rounded-lg shadow-xl">Done</button>
+              </div>
+          </form>
+
+              <div class="text-right"><i class="fa-regular fa-calendar-days mr-2"></i>{{ request.bookdate }} | <i class="fa-solid fa-clock mx-2"></i>{{ request.booktime }}</div>
+          </div>
+          
+        {% endfor %}
+        <!-- for loop ends  -->
+      </div>
 
 </div>
 

@@ -2,6 +2,21 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+# -------------- System -------------------------------
+
+class ContactMessage(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.message
+
+    class Meta:
+        ordering = ['-timestamp']  # Display the most recent messages first
+
+
 # -------------- USER -------------------------------
 
 class UserProfile(models.Model):
@@ -104,6 +119,22 @@ class serve_req(models.Model):
     def __str__(self):
         return self.assname
     
+class assreviews(models.Model):
+    review_id = models.AutoField(primary_key=True)
+
+    User_id = models.IntegerField(default=0)
+    Ass_id = models.IntegerField(default=0)
+
+    message = models.CharField(max_length=1000, default="")
+    username = models.CharField(max_length=100, default="")
+    review_date = models.CharField(max_length=15, default="")
+    review_time = models.CharField(max_length=15, default="")
+
+    sentiment = models.CharField(max_length=15, default="") # Positive = 0 ; Negative = 1 ; Neutral = 2
+
+    def __str__(self):
+        return self.username
+
 # class Driver(models.Model):
 #     user = models.OneToOneField(User, on_delete=models.CASCADE)
 #     # Add additional driver information fields here

@@ -1,0 +1,37 @@
+{% extends 'assistant/assbase.html' %} {% block title %}VAssist | Reviews - {{ user.username }}{% endblock %}
+<div>{% block content %} {% load static %}</div>
+
+
+<div class="my-28">
+    <div class="text-2xl text-center font-bold text-gray-400 my-4">Reviews for {{ user.username }}</div>
+
+    {% for post in reviews_details %}
+        <div class="grid grid-cols-2 gap-4 border p-4 mx-10">
+            <div class="text-xl">
+              <i class="fa-solid fa-comment-dots mr-4"></i> {{ post.message }}<br>
+            </div>
+            <div class="flex justify-end block">
+                
+              <!-- <div class="ml-2"><i class="fa-regular fa-face-laugh-beam mr-2"></i>{{ post.sentimentPositive }} | </div> -->
+
+              {% if post.sentiment == '0' %}
+                  <p><i class="fa-regular fa-face-laugh-beam mr-2"></i>Sentiment : Pos | </p>
+              {% elif post.sentiment == '2'  %}
+                  <p><i class="fa-regular fa-face-meh mr-2"></i>Sentiment : Neu | </p>
+              {% else %}
+                  <p><i class="fa-regular fa-face-frown-open mr-2"></i>Sentiment : Neg | </p>
+              {% endif %}
+
+                <div class="ml-2"><i class="fa-regular fa-circle-user mr-2"></i>{{ post.username }} | </div>
+                <div class="ml-2"><i class="fa-solid fa-calendar-days mr-2"></i>{{ post.review_date }} | </div>
+                <div class="ml-2"><i class="fa-solid fa-clock mr-2"></i>{{ post.review_time }}</div>
+            </div>
+        </div>
+{% empty %}
+    <li>No posts available for this forum.</li>
+{% endfor %}
+
+</div>
+
+{% endblock %}
+

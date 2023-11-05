@@ -20,11 +20,11 @@
 </head>
 <body>
     <!-- HEADER -->
-    <header class="text-[#74afad] body-font border shadow-xl">
-      <div class="fixed bg-white shadow-xl container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+    <header class="text-[#0891b2] body-font border shadow-xl ">
+      <div class="z-50 fixed bg-white shadow-xl container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
         <a href="/" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
           <!-- <img src="http://kamleshyadav.com/html/pure-ayurveda/html/assets/images/herbal.svg" alt="" height="50px" width="50px"> -->
-          <span class="font-extrabold ml-3 text-xl text-[#74afad]">VAssist</span>
+          <span class="font-extrabold ml-3 text-2xl text-[#0891b2]">VAssist</span>
         </a>
         <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
           <a href="/" class="font-extrabold mr-5 hover:text-green-900">Home</a>
@@ -36,10 +36,10 @@
               <a href="/profile">
                   <p class="font-extrabold inline-flex bg-gray-100 border-0 py-4 px-6 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"><i class="fa-regular fa-circle-user"></i>{{ user.username }}</p>
                 </a>
-                {% else %}
+              {% else %}
                 <p class="navBar_text font-bold text-gray-600"><a href="{% url 'user_login' %}"
                     class="font-extrabold inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Login</a></p>
-                    {% endif %}
+              {% endif %}
             </div>
         </nav>
         
@@ -64,7 +64,7 @@
           <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
           </svg> -->
-          <span class="ml-3 font-extrabold ml-3 text-xl text-[#74afad]">VAssist</span>
+          <span class="font-extrabold text-xl text-[#0891b2]">VAssist</span>
         </a>
         <p class="mt-2 text-sm text-gray-500">Best Vehicle Breakdown Assistance Management System</p>
       </div>

@@ -1,9 +1,109 @@
-{% extends 'user/base.html' %} {% block title %}Prakriti | Home{% endblock %}
+{% extends 'user/base.html' %} {% block title %}VAssist | Home{% endblock %}
+
+
+
 <div>{% block content %} {% load static %}</div>
 
-
 <div class="my-28">
-    <div class="text-2xl text-center font-bold text-gray-400">Home</div>
+    <div class="hidden text-2xl text-center font-bold text-gray-400">Home</div>
+
+    <!-- Hero -->
+    <div class="z-0">
+        <div class="relative h-screen ">
+            <!-- Carousel items -->
+            <div class="overflow-hidden h-full">
+              <div class="w-full h-full flex" id="carousel">
+                <!-- First item -->
+                <div class="w-full relative">
+                  <img src="{% static 'images\towing1.jpeg' %}" alt="Slide 1" class="w-full h-full object-cover" />
+                  <div class="absolute inset-x-0 bottom-0 py-5 text-center text-white">
+                    <h5 class="text-xl">1</h5>
+                    <!-- <p>Some placeholder content for the first slide.</p> -->
+                  </div>
+                </div>
+                <!-- Second item -->
+                <div class="w-full relative">
+                  <img src="{% static 'images\towing2.jpg' %}" alt="Slide 2" class="w-full h-full object-cover" />
+                  <div class="absolute inset-x-0 bottom-0 py-5 text-center text-white">
+                    <h5 class="text-xl">2</h5>
+                    <!-- <p>Some placeholder content for the second slide.</p> -->
+                  </div>
+                </div>
+                <!-- Third item -->
+                <div class="w-full relative">
+                  <img src="{% static 'images\towing2.jpg' %}" alt="Slide 3" class="w-full h-full object-cover" />
+                  <div class="absolute inset-x-0 bottom-0 py-5 text-center text-white">
+                    <h5 class="text-xl">3</h5>
+                    <!-- <p>Some placeholder content for the third slide.</p> -->
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          <!-- </div> -->
+          
+          
+        <!-- Carousel controls - prev item -->
+        <button
+            class="absolute inset-y-0 left-0 w-20 bottom-0 left-0 z-10 p-4 text-white  opacity-50 hover:opacity-75 focus:outline-none"
+            onclick="prevSlide()"
+        >
+            Previous
+        </button>
+        <!-- Carousel controls - next item -->
+        <button
+            class="absolute inset-y-0 right-0 w-20 bottom-0 right-0 z-10 p-4 text-white  opacity-50 hover:opacity-75 focus:outline-none"
+            onclick="nextSlide()"
+        >
+            Next
+        </button>
+        </div>
+          
+    </div>
+
+    <!-- About us -->
+    <div class="grid grid-cols-2 gap-4 mx-10 my-20">
+        <div>
+            <div class="block font-sans text-5xl font-semibold leading-tight tracking-normal text-blue-700 antialiased">About Us</div>
+            <div class="my-4 mr-10 text-justify">We offer the Roadside Assistance Package – a 24x7 emergency support provided in the event of any mechanical/electrical breakdown or traffic accident of the vehicle. ... If your car has met with a major accident and is immovable, we will help you to tow your car to the nearest workshop or legal authorities.</div>
+        </div>
+        <div class="flex justify-center">
+            <img src="{% static 'images\tow-truck-federal-way-2.jpg' %}" alt="About Us Image">
+        </div>
+    </div>
+
+    <!-- js code  -->
+    <script>
+        const slides = document.querySelectorAll('.w-full.relative');
+        let currentSlide = 0;
+      
+        function showSlide(slideIndex) {
+          slides.forEach((slide) => {
+            slide.style.display = 'none';
+          });
+          slides[slideIndex].style.display = 'block';
+        }
+      
+        function nextSlide() {
+          currentSlide++;
+          if (currentSlide >= slides.length) {
+            currentSlide = 0;
+          }
+          showSlide(currentSlide);
+        }
+      
+        function startCarousel() {
+          setInterval(() => {
+            nextSlide();
+          }, 4000); // Change slide every 1000 milliseconds (1 second)
+        }
+      
+        // Initially show the first slide and start the carousel
+        showSlide(currentSlide);
+        startCarousel();
+    </script>
+      
+      
 </div>
 
 {% endblock %}

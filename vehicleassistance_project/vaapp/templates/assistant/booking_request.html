@@ -1,26 +1,26 @@
-{% extends 'assistant/assbase.html' %} {% block title %}Booking Request #{{ booking_id }}{% endblock %}
+{% extends 'assistant/assbase.html' %} {% block title %}VAssist | Booking Request {{ booking_id }}{% endblock %}
 <div>{% block content %} {% load static %}</div>
 
 
 <div class="mx-4 pt-24">
   <header>
-    <h2 class="text-gray-400 text-2xl font-semibold m-6 text-center">User Profile</h2>
+    <h2 class="text-gray-400 text-2xl font-semibold m-6 text-center">Request Details</h2>
   </header>
 
 
   <div class=" mx-10">
-    <p class="text-xl my-6">Booking Id: {{ request_details.Booking_id }}</p>
-    <p class="text-xl my-6 p-4 border shadow-xl text-center">Status: {{ request_details.status }}</p>
+    <p class="text-xl my-6"><i class="fa-solid fa-hashtag mr-2"></i>Booking Id: {{ request_details.Booking_id }}</p>
+    <p class="text-xl my-6 p-4 border shadow-xl text-center text-green-700 font-bold"><i class="fa-solid fa-ticket mr-2"></i>Status: {{ request_details.status }}</p>
 
     <p class="text-xl my-6">Username: {{ request_details.username }}</p>
     <p class="text-xl my-6">Register Date: {{ request_details.bookdate }}</p>
     <p class="text-xl my-6">Register Time: {{ request_details.booktime }}</p>
     <div class="grid grid-cols-2 gap-4">
-      <p class="text-xl my-6 text-center p-2 border">Latitude: {{ request_details.locationlat }}</p>
-      <p class="text-xl my-6 text-center p-2 border">Longitude: {{ request_details.locationlong }}</p>
+      <p class="text-xl my-6 text-center p-2">Latitude: {{ request_details.locationlat }}</p>
+      <p class="text-xl my-6 text-center p-2">Longitude: {{ request_details.locationlong }}</p>
     </div>
 
-    <p class="text-xl my-6 p-4 border my-4">Message: {{ request_details.message }}</p>
+    <p class="text-xl my-6 p-4 border my-4"><i class="fa-solid fa-circle-info mr-2"></i><b>Issue:</b> {{ request_details.message }}</p>
     <div>
       <form method="post" action="{% url 'take_request' %}">
         {% csrf_token %}
@@ -28,8 +28,8 @@
             <input type="text" name="booking_id" value="{{ request_details.Booking_id }}" class="hidden p-1 border mx-4 rounded px-2">
         </div>
 
-        <div class="flex justify-center">
-            <button type="submit" class="text-xl p-1 border mx-4 rounded px-2 hover:bg-gray-300 mr-6">Take Request</button>
+        <div class="flex justify-center my-10">
+            <button type="submit" class="text-xl py-2 px-4 font-bold border border-2 border-green-600 mx-4 rounded px-2 hover:shadow-xl hover:border-gray-700 mr-6"><i class="fa-solid fa-bookmark mr-2"></i>Take Request</button>
         </div>
 
       </form>

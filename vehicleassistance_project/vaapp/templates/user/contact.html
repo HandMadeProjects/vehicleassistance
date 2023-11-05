@@ -1,9 +1,73 @@
-{% extends 'user/base.html' %} {% block title %}Prakriti | Home{% endblock %}
+{% extends 'user/base.html' %} {% block title %}VAssist | Contact{% endblock %}
 <div>{% block content %} {% load static %}</div>
 
 
 <div class="my-28">
-    <div class="text-2xl text-center font-bold text-gray-400">Contact</div>
+
+    <!-- conytact form -->
+    <section>
+        <h2 class="text-xl text-center uppercase font-bold mb-4">Contact Us</h2>
+        <p class="text-xl text-center">If you have any questions or inquiries, please feel free to get in touch with us.</p>
+
+        
+        <div class="mx-10 border border-gray-600 p-10 my-10">
+            <!-- Add an alert div that is initially hidden -->
+            <div id="alert" class="alert alert-success" style="display: none;">
+                Message has been sent.
+            </div>
+
+            <form method="post">
+                {% csrf_token %}
+                
+                <div class="grid grid-cols-2 gap-4 my-4">
+                    
+                    <div>
+                        <!-- Add your contact form fields here -->
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required
+                        class="border border-gray-400 rounded w-54 w-full my-1 px-1" placeholder="  name"><br>
+                    </div>
+                    
+                    
+                    <div>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required
+                        class="border border-gray-400 rounded w-54 w-full my-1 px-1" placeholder="  email"><br>
+                    </div>
+                </div>
+                
+                <label for="message">Message:</label>
+                <textarea
+                class="my-1 peer h-full min-h-[100px] w-full resize-none rounded-[7px] border border-gray-400 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50"
+                placeholder="message"
+                id="message" name="message" required
+              ></textarea>
+                
+                <div class="flex justify-center">
+                  <button type="submit" id="submitButton" class="py-2 px-4 font-bold text-blue-600 hover:shadow-xl hover:text-blue-800 border border-gray-600 rounded ">Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    
+    <div class="text-2xl text-center font-bold text-gray-400 my-10">Our Office Location</div>
+    <div class="flex justify-center">
+        <div class="mx-4 rounded shadow-xl w-4/6 h-4/6">
+            {{ map_html|safe }}
+        </div>
+    </div>
+
+    <!-- JavaScript to show the alert after form submission -->
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
+            event.preventDefault();  // Prevent the form from submitting normally
+            // Send the form data using AJAX (you may need to include a JavaScript library like jQuery)
+            // Once the form submission is successful, display the alert
+            // For simplicity, we'll just show the alert without AJAX
+            document.getElementById('alert').style.display = 'block';
+        });
+    </script>
+
 </div>
 
 {% endblock %}

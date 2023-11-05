@@ -1,12 +1,14 @@
-{% extends 'assistant/assbase.html' %} {% block title %}Prakriti Community | User Profile{% endblock %}
+{% extends 'assistant/assbase.html' %} {% block title %}VAssist | Ass Chating Rooms{% endblock %}
 <div>{% block content %} {% load static %}</div>
 
 
-<div class="mx-4 pt-24">
+<div class="pt-24 bg-[#ecfdf5] py-4">
 
   <header>
     <h2 class="text-gray-400 text-2xl font-semibold m-6 text-center">Chat Room for {{ chat_details.0.Booking_id }}</h2>
-  </header>
+    <div class="text-center"><i class="fa-solid fa-circle-info mr-2"></i> {{ request_details.message }}</div>
+    </header>
+
 <!-- 
   Booking_id = models.IntegerField(default=0)
   message = models.CharField(max_length=1000, default="")
@@ -20,14 +22,37 @@
 
             {% if chats.username == user.username %}
                 <!-- assistant -->
-                <div class="text-right pr-4 p-1 border border-blue-700 my-2">{{ user.username }} Msg: {{ chats.message }}</div>
+                <div class="text-right pr-4 p-1 my-2 ml-10">
+                    <b>{{ user.username }}:</b> {{ chats.message }}
+                </div>
+                
 
             {% else %}
                 <!-- user  -->
-                <div class="text-left pl-4 p-1 border border-green-700 my-2">{{ chats.username }} msg: {{ chats.message }}</div>
+                <div class="text-left pl-4 p-1 my-2 mr-10">
+                    <b>{{ chats.username }}:</b> {{ chats.message }}
+                </div>
             {% endif %}
 
         {% endfor %}
+
+        <!-- Form for making a post -->
+        <form method="post" class="my-4">
+            {% csrf_token %}
+            <div class="flex justify-end">
+                <!-- <textarea id="new_post" name="new_post" cols="50" required class="border shadow-xl p-4"></textarea> -->
+                <textarea id="new_post" name="new_post" cols="50" required class="border border-gray-600 rounded-lg p-2 resize-none w-2/6 h-10 focus:outline-none focus:border-blue-500 overflow-y-hidden mr-2 shadow-xl" placeholder="enter your message..."
+                ></textarea>
+
+
+                <!-- <input type="text" id="forum_topic" name="forum_slug" value="{{ user.username }}" class="hidden"> -->
+                <input type="text" id="forum_topic" name="forum_topic" value="{{ chat_details.0.Booking_id }}" class="hidden">
+                
+                <button type="submit" class="p-2 border border-gray-600 rounded-lg shadow-xl">Send</button>
+            </div>
+        </form>
+
+        
         
 
     </div>

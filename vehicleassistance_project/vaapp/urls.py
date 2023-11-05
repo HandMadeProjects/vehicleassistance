@@ -2,6 +2,9 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+
+# -----  User --------------------------------------------------------------------------------
+
     path("", views.home, name="home"),
     # path("about/", views.about, name="AboutUs"),
 
@@ -16,13 +19,19 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
 
+# -----  Assistant --------------------------------------------------------------------------------
 
     path("assindex/", views.assindex, name="assindex"),
+    
+    path("assreviews/", views.showreviews, name="showreviews"),
+
+
     path("assmap/", views.plot_active_req_on_map, name="plot_active_req_on_map"),
     path('assprofile/', views.assprofile, name='assprofile'),
     path('take_request/', views.take_request_view, name='take_request'),
     
     path('all_request/', views.assRequests, name='assRequests'),
+    path('assrequestaction/', views.assrequestaction, name='assrequestaction'),
 
     path('bookingreq/<int:booking_id>/', views.booking_request, name='booking_request'),
     

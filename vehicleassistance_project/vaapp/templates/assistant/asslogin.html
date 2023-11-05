@@ -10,9 +10,19 @@
     <!-- <script type="text/javascript" src="{% static 'jsscript\script.js' %}"></script> -->
 
     <title>Assistance Login</title>
+
+    <style>
+        /* Add CSS for the background image */
+        body {
+            background-image: url("{% static 'images/loginBg.jpg' %}"); /* Replace with the actual path to your background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
 </head>
-<body>
-    <h2 class="text-4xl text-center m-24 font-bold">Assistance Login</h2>
+<body class="">
+    <h2 class="text-4xl text-center m-24 font-bold">VAssist | Assistance Login</h2>
     {% if messages %}
         <ul>
             {% for message in messages %}
@@ -21,11 +31,11 @@
         </ul>
     {% endif %}
     
-    <div class="p-4 mx-24">
-        <div class="grid grid-cols-3 gap-4">
+    <div class="p-4 mx-24 ">
+        <div class="grid grid-cols-3 gap-4 ">
             <div></div>
             
-            <div class="border rounded p-4  shadow-xl">
+            <div class="border rounded p-4  shadow-xl border border-gray-500">
                 <form method="post">
                     {% csrf_token %}
                     <div class="my-4">
@@ -38,9 +48,9 @@
                         <input type="password" name="asspassword" required class="p-1 border mx-4 rounded px-2"><br>
                     </div>
                     <div class="flex justify-center">
-                        <button type="submit" class="text-xl p-1 border mx-4 rounded px-2 hover:bg-gray-300 mr-6">Login</button>
-                        <a href="/assregister/" class="text-xl p-1 border mx-4 rounded px-2 hover:bg-gray-300">Sign UP</a>
-                        <a href="/" class="text-xl p-1 border mx-4 rounded px-2 hover:bg-gray-300">Home</a>
+                        <button type="submit" class="text-xl p-1 border mx-4 rounded px-2 hover:bg-gray-300 mr-6 shadow-xl border-gray-500">Login</button>
+                        <a href="/assregister/" class="text-xl p-1 border mx-4 rounded px-2 hover:bg-gray-300 shadow-xl border-gray-500">Sign UP</a>
+                        <a href="/" class="text-xl p-1 border mx-4 rounded px-2 hover:bg-gray-300 shadow-xl border-gray-500">Home</a>
                     </div>
                 </form>
             </div>

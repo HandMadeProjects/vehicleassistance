@@ -3,15 +3,21 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 # from django.contrib.auth.forms import UserCreationForm
 
-from .models import UserProfile, bookingreq, assistant, serve_req, personalchat
+from .models import UserProfile, bookingreq, assistant, serve_req, personalchat, assreviews, ContactMessage
 from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.models import User
 from django.contrib import messages
 
 import folium
+import requests
 
 from datetime import datetime
+
+# contact us
+from django.core.mail import send_mail
+from django.conf import settings
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -24,8 +30,48 @@ def about(request):
     return render(request,'user/about.html')
 
 def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message_text = request.POST.get('message')
+
+        # Create and save a ContactMessage instance
+        contact_message = ContactMessage(name=name, email=email, message=message_text)
+        contact_message.save()
+
+        '''send_email():
+            # # Send an email to your contact address
+            # subject = f"Message from {name}"
+            # message_body = f"Name: {name}\nEmail: {email}\nMessage: {message}"
+            # from_email = settings.DEFAULT_FROM_EMAIL
+            # recipient_list = [settings.CONTACT_EMAIL_ADDRESS]  # Replace with your contact email address
+
+            # try:
+            #     send_mail(subject, message_body, from_email, recipient_list, fail_silently=False)
+            #     return HttpResponse("Thank you for contacting us! We will get back to you shortly.")
+            # except Exception as e:
+            #     return HttpResponse("An error occurred while sending your message. Please try again later.")
+        '''
+
+
     # return HttpResponse('Prakriti    |      community index Page')
-    return render(request,'user/contact.html')
+    import folium
+
+    currentSpot = [19.0236, 72.8499]
+
+    # Create a map centered on the current spot location
+    m = folium.Map(location=currentSpot, zoom_start=15)
+
+    # Add a circle around the current spot
+    folium.Circle(location=currentSpot, radius=1000, color='blue', fill=True, fill_color='blue').add_to(m)
+
+    # Add a red marker for the current spot
+    folium.Marker(currentSpot, icon=folium.Icon(color='red')).add_to(m)
+
+    # Convert the map to HTML and pass it to the template
+    map_html = m._repr_html_()
+    return render(request, 'user/contact.html', {"map_html": map_html})
+
 
 # -------------- USER -------------------------------
 def bookreqSave(U_id, username, locationlat, locationlong, message, state, status):
@@ -89,19 +135,123 @@ def user_profile(request):
 # -------------- Assistant -------------------------------
 # @login_required
 def assindex(request):
-    # return HttpResponse('Prakriti    |      community index Page')
-    return render(request,'assistant/assindex.html')
+    logged_in_username = request.user.username
+
+    ass_details = assistant.objects.filter(assname=logged_in_username).first()
+
+    logged_in_username = request.user.username
+    ass_details = assistant.objects.filter(assname=logged_in_username).first()
+
+    completedRequest = bookingreq.objects.filter(assistedbyAss_id=ass_details.Ass_id, status="done")
+
+    posReview = assreviews.objects.filter(Ass_id=ass_details.Ass_id, sentiment=0)
+    negReview = assreviews.objects.filter(Ass_id=ass_details.Ass_id, sentiment=1)
+    neuReview = assreviews.objects.filter(Ass_id=ass_details.Ass_id, sentiment=2)
+
+
+    parse = { 
+        'ass_details' : ass_details, 
+        'completedRequest' : len(completedRequest),
+        'posReview' : len(posReview),
+        'negReview' : len(negReview),
+        'neuReview' : len(neuReview),
+
+        }
+    return render(request,'assistant/assindex.html', parse)
+
+# Labels: 0 -> Negative; 1 -> Neutral; 2 -> Positive
+
+def sentimentOnReply(post):
+    API_URL = "https://api-inference.huggingface.co/models/cardiffnlp/twitter-roberta-base-sentiment"
+    headers = {"Authorization": "Bearer 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"}
+
+    def query(payload):
+        response = requests.post(API_URL, headers=headers, json=payload)
+        return response.json()
+        
+    output = query({
+        "inputs": post,
+    })
+    # print(output)
+
+    # Iterate through the data list
+    for predictions in output:
+        for prediction in predictions:
+            label = prediction['label']
+            score = prediction['score']
+            print(f"Label: {label}, Score: {score}")
+
+    # Alternatively, you can return labels and scores as a list of tuples
+    labels_with_scores = [(prediction['label'], prediction['score']) for predictions in output for prediction in predictions]
+
+    # Print the list of labels with scores
+    print(labels_with_scores)
+    # [('LABEL_2', 0.9782516956329346), ('LABEL_1', 0.018881788477301598), ('LABEL_0', 0.0028664814308285713)]
+    return labels_with_scores
+
+# post = "I like you. I love you"
+# sentimentOnReply(post)
+
+def showreviews(request):
+    logged_in_username = request.user.username
+    ass_details = assistant.objects.filter(assname=logged_in_username).first()
+    # print("Ass-id : " ,ass_details.Ass_id)
+
+    request_details = assreviews.objects.filter(Ass_id=ass_details.Ass_id)
+    parse = { 'reviews_details' : request_details, }
+
+    return render(request,'assistant/reviews.html', parse)
 
 
 def assRequests(request):
     logged_in_username = request.user.username
     ass_details = assistant.objects.filter(assname=logged_in_username).first()
 
-    request_details = bookingreq.objects.filter(assistedbyAss_id=ass_details.Ass_id)
+    request_details = bookingreq.objects.filter(assistedbyAss_id=ass_details.Ass_id, status="active")
     
     return render(request,'assistant/allrequest.html', {'request_details': request_details})
 
 
+def statusChangeFun(new_status, username, booking_id):
+    # new_status = "new"  # Replace with the new value for status
+    assistant_details = assistant.objects.filter(assname=username).first()
+
+    if assistant_details:
+        Ass_id = assistant_details.Ass_id
+
+    # Use a queryset to update the specific bookingreq object
+    bookingreq.objects.filter(Booking_id=booking_id).update(
+        assistedbyAss_id=Ass_id,
+        status=new_status
+    )
+    # print("done update")
+
+def assrequestaction(request):
+    # action = request.form.get('action')
+
+    if request.method == 'POST':
+        # logged_in_username = request.user.username
+
+        username   = request.POST.get('username')
+        booking_id = request.POST.get('booking_id')
+        action     = request.POST.get('action')
+    
+        if action == 'decline':
+            # print("User clicked the 'Decline' button.")
+            new_status = 'new'
+            statusChangeFun(new_status, username, booking_id)
+
+        elif action == 'done':
+            # print("User clicked the 'Done' button.")
+            new_status = 'done'
+            statusChangeFun(new_status, username, booking_id)
+
+        # return redirect('booking_request', booking_id=booking_id)        
+        return redirect('assRequests')        
+
+        
+    
+    # return "Button clicked."
 
 @login_required
 def assprofile(request):
@@ -148,10 +298,20 @@ def activateReqSave(booking_id_to_update, logged_in_username):
 # --- Chat -----------------
 
 def chatingRoom(request, booking_id):
+    if request.method == 'POST':
+        assname = request.POST.get('assname')
+        asspassword = request.POST.get('asspassword')
+        confirm_password = request.POST.get('confirm_password')
+        
+
+
     # print("booking_id: ", booking_id)
     chat_details = personalchat.objects.filter(Booking_id=booking_id)
+    request_details = bookingreq.objects.filter(Booking_id=booking_id).first()
 
-    return render(request, 'assistant/chating.html', {'chat_details': chat_details}) 
+    parse = {'chat_details': chat_details, 'request_details' : request_details}
+
+    return render(request, 'assistant/chating.html', parse) 
 # --------------------
 
 # Define a list of coordinates and corresponding links

@@ -133,3 +133,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# ------- Contact Us : Email ---------------------------------------------------
+# settings.py
+
+# # Email Backend
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # Use SMTP email backend
+
+# # SMTP Settings (replace with your email provider's SMTP settings)
+# EMAIL_HOST = 'your-smtp-server.com'  # Replace with your SMTP server's hostname
+# EMAIL_PORT = 587  # Replace with your SMTP server's port (587 is the default for TLS)
+# EMAIL_USE_TLS = True  # Use TLS (True for most email providers)
+# EMAIL_HOST_USER = 'your-email@example.com'  # Replace with your email address
+# EMAIL_HOST_PASSWORD = 'your-email-password'  # Replace with your email password
+
+# # Default "From" Email Address
+# DEFAULT_FROM_EMAIL = 'your-email@example.com'  # Replace with your email address
+
+# # Contact Email Address (where contact form submissions will be sent)
+# CONTACT_EMAIL_ADDRESS = 'contact@example.com'  # Replace with your contact email address

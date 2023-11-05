@@ -1,11 +1,11 @@
-{% extends 'assistant/assbase.html' %} {% block title %}Prakriti Community | User Profile{% endblock %}
+{% extends 'assistant/assbase.html' %} {% block title %}VAssist | Ass Profile{% endblock %}
 <div>{% block content %} {% load static %}</div>
 
 
 <div class="mx-4 pt-24">
 
   <header>
-    <h2 class="text-gray-400 text-2xl font-semibold m-6 text-center">User Profile</h2>
+    <h2 class="text-gray-400 text-2xl font-semibold m-6 text-center">Assistant Profile</h2>
   </header>
 
   <!-- class assistant(models.Model):
@@ -26,19 +26,35 @@
 
 
     <div class=" mx-10">
-      <a href="{% url 'user_logout' %}" class="p-2 border shadow">Logout</a>
-      <p class="text-xl my-6">User Id: {{ user_profile.Ass_id }}</p>
-      <p class="text-xl my-6">Username: {{ user_profile.assname }}</p>
-      <p class="text-xl my-6">Fullname: {{ user_profile.assfullname }}</p>
-      <p class="text-xl my-6">Ratings: {{ user_profile.ratings }}</p>
-      <p class="text-xl my-6">Registerd on: {{ user_profile.registerdOn }}</p>
-      <p class="text-xl my-6">Email: {{ user_profile.assemail }}</p>
-      <p class="text-xl my-6">Age: {{ user_profile.assage }}</p>
-      <p class="text-xl my-6">Date of Birth: {{ user_profile.assdate_of_birth }}</p>
-      <p class="text-xl my-6">Location (Latitude): {{ user_profile.homelocationlat }}</p>
-      <p class="text-xl my-6">Location (Longitude): {{ user_profile.homelocationlong }}</p>
-      <p class="text-xl my-6">State: {{ user_profile.assstate }}</p>
-      <p class="text-xl my-6">Contact Number: {{ user_profile.contact_number }}</p>
+      <div class="my-10">
+        <a href="{% url 'user_logout' %}" class="p-2 border border-gray-500 rounded shadow-xl"><i class="fa-solid fa-right-from-bracket mr-2"></i>Logout</a>
+      </div>
+        
+      <div class="grid grid-cols-3 gap-4">
+
+        <p class="text-xl my-6"><i class="fa-solid fa-id-card mr-2"></i>{{ user_profile.Ass_id }}</p>
+        <p class="text-xl my-6"><i class="fa-solid fa-user mr-2"></i>{{ user_profile.assname }}</p>
+        <p class="text-xl my-6">Fullname: {{ user_profile.assfullname }}</p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-4">
+        <p class="text-xl my-6">Ratings: <i class="fa-solid fa-star mx-2"></i> {{ user_profile.ratings }}</p>
+        <p class="text-xl my-6"><i class="fa-solid fa-envelope mr-2"></i> {{ user_profile.assemail }}</p>
+        <p class="text-xl my-6"><i class="fa-solid fa-phone mr-2"></i> {{ user_profile.contact_number }}</p>
+      </div>
+      
+      <div class="grid grid-cols-3 gap-4">
+        <p class="text-xl my-6"><i class="fa-solid fa-map-location-dot mr-2"></i> State: {{ user_profile.assstate }}</p>
+        <p class="text-xl my-6"><i class="fa-regular fa-calendar-check mr-2"></i>Registerd on: {{ user_profile.registerdOn }}</p>
+        <p class="text-xl my-6">Age: {{ user_profile.assage }}</p>
+        <p class="text-xl my-6">Date of Birth: <i class="fa-solid fa-calendar-days mx-2"></i> {{ user_profile.assdate_of_birth }}</p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <p class="text-xl my-6 text-center p-2 border shadow-lg font-bold">Location (Latitude): {{ user_profile.homelocationlat }}</p>
+        <p class="text-xl my-6 text-center p-2 border shadow-lg font-bold">Location (Longitude): {{ user_profile.homelocationlong }}</p>
+      </div>
+
     </div>
 
 </div>

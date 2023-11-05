@@ -1,8 +1,27 @@
+python manage.py startapp vaapp
+
+
+-----------------------------------------  Cmds  ---------------------------
+
 python manage.py makemigrations
 python manage.py migrate
 
-
 python manage.py createsuperuser
+
+-----------------------------------------  Accounts  ---------------------------
+
+-- Demo User Account
+username: simpleuser
+password: 123
+
+-- Demo Assistant Account
+username: yash
+password: 123
+
+
+---------------------------
+
+-- Admin Account
 username: adminvaapp
 password: myAdminPass@123
 
@@ -15,11 +34,6 @@ password: myAdminPass@123
 
 
 
+-----------------------------------------  to run project ---------------------------
 
----- to run project 
 python manage.py runserver
-
-
-
-
-
